@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content = "JavaScriptで制作したターン制バトルゲームです。プレイヤーの攻撃やクリティカル攻撃を使って敵を倒します。">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- リセットCSS -->
+         <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+         <title>JavaScriptバトルゲーム</title>
+         <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="screen">
+
+            <!--タイトル画面-->
+            <div id="title-screen">
+                <div class="container">
+                    <h1 class="title">JSバトル</h1>
+                    <p class="game-describe">敵を倒して勝利をつかめ！！</p>
+                    <button id="start-button" type="button">スタート</button>
+                </div>
+            </div>
+
+            <!--戦闘画面-->
+            <div id="battle-screen" hidden>
+                
+                <div id="battle-field">
+                    <h2>敵が現れた！</h2>
+
+                    <!--敵エリア-->
+                    <div id="enemy-area">
+
+                        <!--敵の情報-->
+                        <div id="enemy-status">
+                            <h3 id="enemy-name">スライム</h3>
+                            <p>HP:<span id="enemy-hp"></span>/<span id="enemy-max-hp"></span></p>
+                            <div class="hp-bar">
+                                <div id="enemy-hp-bar" class="hp-bar-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--敵の画像-->
+                    <img src="images/slime.png" alt="スライムの画像" id="enemy-image">
+                </div>
+
+                <!--プレイヤーエリア-->
+                <div id="player-area">
+
+                <!--冒険者の情報-->
+                    <div id="player-status">
+                        <h3>冒険者</h3>
+                        <p>HP:<span id="player-hp">170</span>/<span id="player-max-hp">200</span></p>
+                        <div class="hp-bar">
+                            <div id="player-hp-bar" class="hp-bar-fill"></div>
+                        </div>
+                    </div>
+
+                    <!--操作ボタン-->
+                    <div id="player-buttons">
+                        <button id="attack-button" type="button">攻撃</button>
+                        <button id="skill-button" type="button">強撃</button>
+                        <button id="potion-button" type="button" disabled>ポーション（40回復）</button>
+                        <button id="detail-button" type="button">詳細</button>
+                    </div>
+                    <p>ポーション残り: <span id="potion-count">3</span></p>
+                    
+                </div>
+
+                <!--戦闘メッセージ-->
+                <div id="battle-message">
+                    <div class="message-box player-message-box">
+                        <strong>冒険者</strong>
+                        <p id="player-message"></p>
+                    </div>
+                    <div class="message-box enemy-message-box">
+                        <strong id="message-enemy-name">スライム</strong>
+                        <p id="enemy-message"></p>
+                    </div>
+                </div>
+                
+                <!--キャラクター詳細-->
+                <div id="detail-screen" hidden>
+
+                    <!--プレイヤー詳細-->
+                    <div id="detail-player">
+                        <h2>プレイヤー詳細</h2>
+                        <p>ジョブ：冒険者</p>
+                        <p>HP：<span id="detail-player-hp"></span>/<span id="detail-player-max-hp"></span></p>
+                        <P>攻撃力：<span id="detail-player-attack"></span></p>
+                        <p>スキル： 強撃（1.5倍の攻撃、敵を一ターンひるませる。1ステージに1回使用可能）</p>
+                    </div>
+
+                    <!--敵詳細-->
+                    <div id="detail-enemy">
+                        <h2>敵キャラ詳細</h2>
+                        <p>名前：<span id="detail-enemy-name"></span></p>
+                        <p>HP：
+                            <span id="detail-enemy-hp"></span>/
+                            <span id="detail-enemy-max-hp"></span>
+                        </p>
+                        <p>攻撃力：<span id="detail-enemy-attack"></span></p>
+                        <p>スキル：<span id="detail-enemy-skill"></span></p>
+                    </div>
+
+                    <!--閉じるボタン-->
+                    <button id="close-button" type="button">閉じる</button>
+                </div>
+            </div>
+            
+            <!--勝利画面-->
+            <div id="victory-screen" hidden>
+                <div class="end-screen-content victory-content">
+                    <p class="end-label">ALL STAGES CLEAR</p>
+                    <h1>VICTORY!</h1>
+                    <p>すべての敵を倒した！</p>
+                    <button id="victory-restart-screen" type="button">再戦する</button>
+                </div>
+            </div>
+            
+            <!--敗北画面-->
+            <div id="defeated-screen" hidden>
+                <div class="end-screen-content defeated-content">
+                    <p class="end-label">GAME OVER</p>
+                    <h1>DEFEATED</h1>
+                    <p>冒険者は力尽きた...</p>
+                    <button id="defeated-restart-screen" type="button">再挑戦する</button>
+                </div>
+            </div>
+            <script src="js/script.js"></script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,398 @@
+@charset "UTF-8";
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background-color: #26352b;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+[hidden]{
+    display: none !important;
+}
+
+button{
+    font-family: inherit;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px gold;
+}
+
+#screen{
+    color: white;
+}
+
+#title-screen,
+#battle-screen,
+#victory-screen,
+#defeated-screen {
+    height: 100vh;
+    height: 100dvh;
+}
+
+#title-screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/title-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-size: clamp(50px, 10vw, 150px);
+    margin-bottom: 40px;
+    color: gold;
+    text-shadow:
+        3px 3px 5px black,
+        0 0 20px orange;
+    letter-spacing: 8px;
+}
+
+.game-describe {
+    font-size: clamp(20px, 4vw, 50px);
+    text-shadow: 2px 2px 5px black;
+    margin-bottom: 20px;
+}
+
+#start-button {
+    font-size: 40px;
+    padding: 10px 40px;
+    margin-top: 20px;
+    background: linear-gradient(#70c85c, #286b32);
+    border: 2px solid gold;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+#battle-field{
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    background-image: url('../images/battle-background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+#battle-field h2 {
+    font-size: clamp(20px, 4vw, 32px);
+    margin:0 0 10px;
+    text-align: center;
+}
+
+#battle-screen{
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+#battle-screen button{
+    font-size: clamp(16px, 3vw, 40px);
+    padding: 10px 20px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+}
+
+#enemy-area,
+#player-area{
+    width: 100%;
+
+}
+
+#enemy-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#enemy-image{
+    width: clamp(120px, 18vw, 200px);
+    height: clamp(120px, 18vw, 200px);
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+#player-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0px;
+    padding: 5px;
+    background-color: #26352b;
+}
+
+#player-status{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hp-bar{
+    width: 250px;
+    height: 40px;
+    background-color: #ddd;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.hp-bar-fill{
+    width: 100%;
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s;
+}
+
+#player-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#skill-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#battle-message {
+    width: 100%;
+    min-height: 0px;
+    text-align: center;
+    margin-bottom: 0px;
+    padding: 10px, 20px, 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-box {
+    width: 65%;
+    max-width: 800px;
+    min-height: 85px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #26352b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.player-message-box {
+    background-color: #d9edff;
+    align-self: flex-start;
+    width: 80%;
+    margin-left: 15px;
+}
+
+.enemy-message-box {
+    background-color: #ffe0d9;
+    align-self: flex-end;
+    width: 80%;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.message-box strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.message-box p {
+    margin: 0;
+}
+
+#battle-message p{
+    margin-bottom: 0px;
+}
+
+#detail-screen{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+}
+
+#detail-enemy{
+    width: 80%;
+    max-width: 500px;
+    padding: 30px;
+    background-color: #26352b;
+    border: 2px solid gold;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#detail-player{
+    width: 80%;
+    max-width: 500px;
+    padding: 30px;
+    background-color: #26352b;
+    border: 2px solid gold;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#detail-player p {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+#detail-button{
+    font-size: 16px !important;
+    padding: 5px 15px !important;
+    margin: 5px 0 10px;
+}
+
+#victory-screen,
+#defeated-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#victory-screen {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.4)
+        ),
+    url('../images/victory-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#defeated-screen {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+        ),
+        url('../images/defeated-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#victory-screen h1 {
+    color: gold;
+}
+
+#victory-screen h1,
+#defeated-screen h1 {
+    font-size: clamp(40px, 10vw, 100px);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px black;
+}
+
+.end-screen-content {
+    width: 85%;
+    max-width: 650px;
+    padding: 50px 20px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 3px solid;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+/* 勝利画面 */
+.victory-content {
+    border-color: gold;
+}
+
+#victory-screen h1 {
+    color: gold;
+    text-shadow: 0 0 15px orange;
+}
+
+/* 敗北画面 */
+.defeated-content {
+    border-color: #a83232;
+}
+
+#defeated-screen h1 {
+    color: #ff5555;
+    text-shadow: 0 0 15px darkred;
+}
+
+/* 大きなタイトル */
+#victory-screen h1,
+#defeated-screen h1 {
+    font-size: clamp(40px, 10vw, 90px);
+    margin-bottom: 15px;
+}
+
+/* 上部のラベル */
+.end-label {
+    font-size: clamp(14px, 3vw, 20px);
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+/* 説明文 */
+.end-screen-content > p:not(.end-label) {
+    font-size: clamp(16px, 3vw, 24px);
+    margin-bottom: 30px;
+}
+
+/* 再戦ボタン */
+.end-screen-content button {
+    font-size: clamp(18px, 3vw, 28px);
+    padding: 12px 40px;
+    border: 2px solid gold;
+    border-radius: 8px;
+    background-color: #4caf50;
+}
+
+.defeated-content button {
+    background-color: #8b2929;
+    border-color: #d66b6b;
+}
+
+@media (max-width: 600px) {
+    #player-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    #battle-screen button {
+        padding: 8px 12px;
+    }
+}
